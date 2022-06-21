@@ -1,0 +1,23 @@
+{% extends 'handbook/base/base_page.html' %}
+{% block title %}
+    Главная
+{% endblock %}
+{% block content %}
+    <br>
+    <h3>Справочники</h3>
+    {% for handbook in handbooks %}
+        <div style="margin: 30px">
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <a href={% url 'handbook:handbook' handbook.id %}><h3>{{ handbook.title }}: {{ handbook.version }}</h3></a>
+                </div>
+            </div>
+            <h3>Описание</h3>
+            <div class="div-info">
+                <p>{{ handbook.description }}</p>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+{% endblock %}

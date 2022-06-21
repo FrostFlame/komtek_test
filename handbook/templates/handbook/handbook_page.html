@@ -1,0 +1,46 @@
+{% extends 'handbook/base/base_page.html' %}
+{% load static %}
+{% block title %}
+    {{ handbook.title }}
+{% endblock %}
+
+{% block content %}
+    <a href={% url 'handbook:handbook' handbook.id %}><h3>{{ handbook.title }}</h3></a>
+    <div class="div-info">
+        <h4>Краткое название: {{ handbook.short_title }}</h4>
+    </div>
+    <div class="div-info">
+        <p>Версия справочника: {{ handbook.version }}</p>
+    </div>
+    <div class="div-info">
+        <p>Глобальный идентификатор: {{ handbook.identifier }}</p>
+    </div>
+    <div class="div-info">
+        <p>Дата начала действия: {{ handbook.begin_date }}</p>
+    </div>
+    <h3>Описание</h3>
+    <div class="div-info">
+        <p>{{ handbook.description }}</p>
+    </div>
+    <br>
+    <h3>Элементы справочника:</h3>
+    {% for element in handbook.elements.all %}
+        <div style="margin: 30px">
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <h3>{{ element.value }}</h3>
+                </div>
+            </div>
+            <div class="div-info">
+                <p>Код элемента: {{ element.code }}</p>
+            </div>
+            <div class="div-info">
+                <p>Родительский идентификатор: {{ element.parent_identifier }}</p>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+
+
+{% endblock %}
